@@ -1,5 +1,6 @@
 // server.js
-console.log('May Node be with you')
+//console.log('May Node be with you')
+
 const express = require('express');
 const app = express();
 
@@ -8,4 +9,7 @@ app.listen(3000, function() {
 })
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html')
+})
+app.post('/quotes', (req, res) => {
+  console.log('Hellooooooooooooooooo!')
 })
