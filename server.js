@@ -19,19 +19,18 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.listen(3000, function() {
       console.log('listening on 3000')
     })
-
-    app.get('/', (req, res) => {
+    app.get('/', function(req, res) {
+      res.sendFile(__dirname + '/index.html')
       db.collection('quotes').find().toArray()
-        .then(results => {
-          console.log(results)
-        })
-        .catch(error => console.error(error))
+      .then(results => {
+        console.log(results)
+      })
+      .catch(error => console.error(error))
     })
-
     app.post('/quotes', (req, res) => {
       quotesCollection.insertOne(req.body)
         .then(result => {
-          res.redirect('/')
+          res.redirect("/")
         })
         .catch(error => console.error(error))
     })
