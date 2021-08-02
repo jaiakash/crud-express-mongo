@@ -15,6 +15,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
     // Make sure you place body-parser before your CRUD handlers!
     app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(express.static('public'))
+    app.use(bodyParser.json())
 
     app.listen(3000, function() {
       console.log('listening on 3000')
@@ -35,5 +37,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           res.redirect("/")
         })
         .catch(error => console.error(error))
+    })
+
+    app.put('/quotes', (req, res) => {
+      console.log(req.body)
     })
   })
